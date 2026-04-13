@@ -1,4 +1,4 @@
-# 🚀 FlowBoard
+# 🚀 Trackify
 
 A modern Kanban-style task management application built with React.  
 FlowBoard helps you organize tasks across multiple stages, track progress visually, and manage your workflow efficiently with a clean and interactive UI.
