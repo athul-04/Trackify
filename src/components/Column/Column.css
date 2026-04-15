@@ -1,0 +1,12 @@
+.column{
+    border:2px solid var(--border);
+    min-height: 100vh;
+    width: 20rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+
+.column-content{
+    padding: 0.5rem 1rem 1rem 1rem;
+}
