@@ -1,0 +1,13 @@
+.add-task-form{
+    margin-top: 4rem;
+    /* padding-top: 70px; */
+    height:8rem;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.add-task-form-btn-container{
+    margin-left: auto;
+    margin-right: 3rem;
+}

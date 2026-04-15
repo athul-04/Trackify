@@ -1,0 +1,18 @@
+.board{
+    border: 2px solid var(--border);
+    min-height: 100vh;
+    margin: 0 1rem 1rem 1rem;  
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 768px) {
+    .board{
+        flex-direction: column;
+        margin: 0 1rem 1rem 1rem;  
+        align-items: center;
+    }
+}
