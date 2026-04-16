@@ -1,9 +1,10 @@
 
 import "./TaskCard.css"
-const TaskCard = () => {
+const TaskCard = ({title, description}) => {
     return (
         <div className="task-card">
-            <h3>Task Title</h3>
+            <h3>{title}</h3>
+            <p>{description}</p>
         </div>
     )
 }

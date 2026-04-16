@@ -1,0 +1,1 @@
+export const STATUSES = ["backlog", "in-progress", "review", "done"];
