@@ -6,7 +6,7 @@ export const Column = ({id,tasks}) => {
         <>
             <div className="column">
                 <div style={{ backgroundColor: "red" }}>
-                    <h2>Column Title</h2>
+                    <h2>{ id }</h2>
                 </div>
                 <div className="column-content">
                     {tasks.map((task) => {

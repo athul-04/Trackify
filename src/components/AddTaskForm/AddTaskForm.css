@@ -1,13 +1,52 @@
-.add-task-form{
-    margin-top: 4rem;
-    /* padding-top: 70px; */
-    height:8rem;
+
+.add-task-form {
+    padding-top: 70px;
+    height: 8rem;
     display: flex;
     align-items: center;
     justify-content: right;
 }
 
-.add-task-form-btn-container{
+.add-task-form-btn-container {
     margin-left: auto;
     margin-right: 3rem;
+}
+
+.overlay {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.2);
+
+    z-index: 5;
+}
+
+
+.form {
+    width: 500px;
+    min-height: 300px;
+
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: 70px;
+    padding: 2rem;
+    border-radius: 1rem;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    z-index: 20;
+}
+
+
+@media screen and (max-width: 768px) {
+    .form {
+        width: 90%;
+    }
 }
