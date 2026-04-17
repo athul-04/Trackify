@@ -3,6 +3,7 @@ import TaskCard from "../TaskCard/TaskCard";
 import { useDrop } from "react-dnd";
 import { useContext } from "react";
 import { TaskContext } from "../../context/TaskContext";
+import {STATUSES_MAP} from "../../utils/constants";
 
 export const Column = ({ id, tasks }) => {
     const { dispatch } = useContext(TaskContext);
@@ -32,7 +33,7 @@ export const Column = ({ id, tasks }) => {
             }}
         >
             <div className="column-header">
-                <h2>{id}</h2>
+                <h2>{STATUSES_MAP[id]}</h2>
             </div>
 
             <div className="column-content">
