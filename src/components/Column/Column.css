@@ -1,11 +1,27 @@
 .column{
-    border:2px solid var(--border);
+    /* border:2px solid var(--border); */
     min-height: 100vh;
     width: 20rem;
     border-radius: 0.5rem;
     text-align: center;
+    border-bottom: 2px solid var(--border);
+}
+.column-header{
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.5rem;
+    /* border-radius: 0.5rem 0.5rem 0 0; */
+    background-color: rgb(130, 137, 143);
+    border-radius: 0.5rem;
 }
 
+.column-header:hover{
+    background-color: rgb(156, 160, 164);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 .column-content{
     padding: 0.5rem 1rem 1rem 1rem;

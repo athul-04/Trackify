@@ -23,6 +23,7 @@
 html {
     background-color: var(--bg);
     color: var(--text-primary);
+   
 }
 /* body,html{
     overflow: hidden;
