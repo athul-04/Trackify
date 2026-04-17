@@ -6,14 +6,16 @@ const ThemeToggle = () => {
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "dark") {
-            document.body.classList.add("dark");
+            document.documentElement.classList.add("dark");
             setDark(true);
+        } else {
+            document.documentElement.classList.remove("dark");
+            setDark(false);
         }
     }, []);
 
     const toggleTheme = () => {
-        document.body.classList.toggle("dark");
-        const isDark = document.body.classList.contains("dark");
+        const isDark = document.documentElement.classList.toggle("dark");
         setDark(isDark);
         localStorage.setItem("theme", isDark ? "dark" : "light");
     };
