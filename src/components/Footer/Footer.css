@@ -1,15 +1,10 @@
-.header{
+.footer{
     align-items: center;
     display: flex;
     height: 70px;
     justify-content: center;
     padding: 1rem;
     border-bottom: 2px solid var(--border);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
     color: var(--text-primary);
@@ -17,24 +12,20 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
 }
 
-.header-title{
-    color: var(--text-primary);
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem 0;
+    }
+
+    .footer-text {
+        margin-top: 0.5rem;
+    }
 }
 
-.theme-toggle {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
+.footer-text{
     color: var(--text-primary);
-    cursor: pointer;
-    font: inherit;
-    padding: 0;
-    width: 5rem;
-    height: 2rem;
-    z-index: 23;
 }

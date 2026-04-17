@@ -4,7 +4,7 @@ import Board from "../components/Board/Board";
 import { useReducer } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { tasksReducer } from "../context/taskReducer";
-
+import Footer from "../components/Footer/Footer";
 
 const TASKS = [
     {
@@ -56,6 +56,7 @@ const Home = () => {
                 <Header />
                 <AddTaskForm />
                 <Board />
+                <Footer />
             </TaskContext.Provider>
         </div>
     )
