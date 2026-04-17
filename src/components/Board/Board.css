@@ -1,5 +1,6 @@
 .board{
     border: 2px solid var(--border);
+    border-top:2px;
     min-height: 100vh;
     margin: 0 1rem 1rem 1rem;  
     border-radius: 0.5rem;
@@ -7,6 +8,7 @@
     display: flex;
     gap: 1rem;
     justify-content: space-around;
+    padding-bottom: 1rem;
 }
 
 @media screen and (max-width: 768px) {

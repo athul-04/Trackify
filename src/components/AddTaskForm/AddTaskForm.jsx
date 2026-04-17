@@ -10,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { TaskContext } from "../../context/TaskContext";
 
+import { Plus } from 'lucide-react';
+
 const AddTaskForm = () => {
     const [formVisible, setFormVisible] = useState(false);
     const [title, setTitle] = useState("");
@@ -37,7 +39,7 @@ const AddTaskForm = () => {
 
     return (
         <>
-            {/* Overlay */}
+    
             {formVisible && (
                 <div
                     className="overlay"
@@ -89,7 +91,7 @@ const AddTaskForm = () => {
             <div className="add-task-form">
                 <div className="add-task-form-btn-container">
                     <Button onClick={() => setFormVisible(true)}>
-                        Add Task
+                        <Plus size={24} />
                     </Button>
                 </div>
             </div>

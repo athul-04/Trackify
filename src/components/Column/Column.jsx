@@ -5,7 +5,7 @@ export const Column = ({id,tasks}) => {
     return (
         <>
             <div className="column">
-                <div style={{ backgroundColor: "red" }}>
+                <div className="column-header">
                     <h2>{ id }</h2>
                 </div>
                 <div className="column-content">
