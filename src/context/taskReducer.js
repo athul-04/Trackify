@@ -1,13 +1,16 @@
-
 export const tasksReducer = (state, action) => {
     switch (action.type) {
         case "ADD_TASK":
-            return [...state, action.payload]
-        case "DELETE_TASK":
-            return state
+            return [...state, action.payload];
+
         case "UPDATE_TASK":
-            return state
+            return state.map((task) =>
+                task.id === action.payload.id
+                    ? { ...task, title: action.payload.title || task.title, description: action.payload.description || task.description, status: action.payload.newStatus || task.status }
+                    : task
+            );
+
         default:
-            return state
+            return state;
     }
-}
+};

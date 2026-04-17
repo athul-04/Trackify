@@ -1,19 +1,52 @@
-import "./Column.css"
-import TaskCard from "../TaskCard/TaskCard"
-export const Column = ({id,tasks}) => {
-    
+import "./Column.css";
+import TaskCard from "../TaskCard/TaskCard";
+import { useDrop } from "react-dnd";
+import { useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
+import {STATUSES_MAP} from "../../utils/constants";
+
+export const Column = ({ id, tasks }) => {
+    const { dispatch } = useContext(TaskContext);
+
+    const [{ isOver }, drop] = useDrop(() => ({
+        accept: "TASK",
+        drop: (item) => {
+            dispatch({
+                type: "UPDATE_TASK",
+                payload: {
+                    id: item.id,
+                    newStatus: id,
+                },
+            });
+        },
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+        }),
+    }));
+
     return (
-        <>
-            <div className="column">
-                <div className="column-header">
-                    <h2>{ id }</h2>
-                </div>
-                <div className="column-content">
-                    {tasks.map((task) => {
-                        return <TaskCard key={task.id} title={task.title} description={task.description} />
-                    })}
-                </div>
+        <div
+            ref={drop}
+            className="column"
+            style={{
+                backgroundColor: isOver ? "#f0f0f0" : "transparent",
+            }}
+        >
+            <div className="column-header">
+                <h2>{STATUSES_MAP[id]}</h2>
             </div>
-        </>
-    )
-}
+
+            <div className="column-content">
+                {tasks.map((task) => (
+                    <TaskCard
+                        key={task.id}
+                        id={task.id}
+                        title={task.title}
+                        description={task.description}
+                        status={task.status}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
