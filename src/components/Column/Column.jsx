@@ -29,7 +29,7 @@ export const Column = ({ id, tasks }) => {
             ref={drop}
             className="column"
             style={{
-                backgroundColor: isOver ? "#f0f0f0" : "transparent",
+                backgroundColor: isOver ? "var(--bg)" : "transparent",
             }}
         >
             <div className="column-header">
