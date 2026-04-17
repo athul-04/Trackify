@@ -3,6 +3,7 @@
     border-radius: 0.5rem;
     padding: 1rem;
     margin-bottom: 1rem;
+    position: relative;
 }
 
 .task-card:hover{
@@ -11,3 +12,51 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.menubar{
+    cursor: pointer;
+    display: flex;
+    justify-content:right;
+}
+
+.menu-icon{
+    transition: background-color 0.3s ease;
+}
+
+.menu-icon:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+
+.editing{
+    display: inline;
+    position: absolute;
+    top: 2.6rem;
+    right: 0;
+    z-index: 21;
+    background-color: white;
+    border:1px solid black;
+    /* border-bottom: none; */
+    padding:2px;
+    font-size:smaller;
+    /* border-radius: 0.5rem; */
+
+}
+
+.status-item{
+    padding: 2px 4px;
+    border-bottom: 1px solid black;
+}
+
+.status-item:hover{
+    background-color: rgba(213, 205, 205, 0.1);
+}
+
+.hidden{
+    display: none;
+}
+
+
+
+
