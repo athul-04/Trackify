@@ -24,3 +24,8 @@ html {
     background-color: var(--bg);
     color: var(--text-primary);
 }
+
+
+body::-webkit-scrollbar {
+    display: none;
+}
