@@ -8,6 +8,7 @@ import Footer from "../components/Footer/Footer";
 import { auth,db } from "../config/firebase"
 import { collection } from "firebase/firestore";
 import { query, where, onSnapshot } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const todosCollectionRef = collection(db, "todos");
 
