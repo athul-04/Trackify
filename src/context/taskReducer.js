@@ -10,6 +10,9 @@ export const tasksReducer = (state, action) => {
                     : task
             );
 
+        case "SET_TASKS":
+            return action.payload;
+
         default:
             return state;
     }
