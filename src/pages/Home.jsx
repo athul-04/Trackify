@@ -17,23 +17,41 @@ const Home = () => {
     const [tasks, dispatch] = useReducer(tasksReducer,[])
 
     useEffect(() => {
-        if (!auth.currentUser) return;
-        const q = query(
-            todosCollectionRef,
-            where("userId", "==", auth.currentUser.uid)
-        );
+        let unsubscribeSnapshot = null;
 
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const todos = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
+        const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+            // cleanup previous listener if any
+            if (unsubscribeSnapshot) {
+                unsubscribeSnapshot();
+                unsubscribeSnapshot = null;
+            }
 
-            dispatch({ type: "SET_TASKS", payload: todos });
-            console.log("Realtime todos:", todos);
+            if (user) {
+                const q = query(
+                    todosCollectionRef,
+                    where("userId", "==", user.uid)
+                );
+
+                unsubscribeSnapshot = onSnapshot(q, (snapshot) => {
+                    const todos = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+
+                    dispatch({ type: "SET_TASKS", payload: todos });
+                    console.log("Realtime todos:", todos);
+                });
+
+            } else {
+                // user logged out
+                dispatch({ type: "SET_TASKS", payload: [] });
+            }
         });
 
-        return () => unsubscribe();
+        return () => {
+            unsubscribeAuth();
+            if (unsubscribeSnapshot) unsubscribeSnapshot();
+        };
     }, []);
     return (
         <div>
