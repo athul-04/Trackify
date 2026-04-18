@@ -1,58 +1,43 @@
 import AddTaskForm from "../components/AddTaskForm/AddTaskForm";
 import Header from "../components/Header/Header";
 import Board from "../components/Board/Board";
-import { useReducer } from "react";
+import { useReducer,useEffect } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { tasksReducer } from "../context/taskReducer";
 import Footer from "../components/Footer/Footer";
+import { auth,db } from "../config/firebase"
+import { collection } from "firebase/firestore";
+import { query, where, onSnapshot } from "firebase/firestore";
 
-const TASKS = [
-    {
-        id: 1,
-        title: "Task 1",
-        description: "Description for Task 1",
-        status: "backlog"
-    },
-    {
-        id: 2,
-        title: "Task 2",
-        description: "Description for Task 2",
-        status: "in-progress"
-    },
-    {
-        id: 3,
-        title: "Task 3",
-        description: "Description for Task 3",
-        status: "done"
-    },
-    {
-        id: 4,
-        title: "Task 4",
-        description: "Description for Task 4",
-        status: "review"
-    },
-    {
-        id: 5,
-        title: "Task 5",
-        description: "Description for Task 5",
-        status: "backlog"
-    },
-    {
-        id: 6,
-        title: "Task 6",
-        description: "Description for Task 6",
-        status: "review"
-    }
-
-]
+export const todosCollectionRef = collection(db, "todos");
 
 
 
 const Home = () => {
-    const [tasks, dispatch] = useReducer(tasksReducer,TASKS)
+    const [tasks, dispatch] = useReducer(tasksReducer,[])
+
+    useEffect(() => {
+        if (!auth.currentUser) return;
+        const q = query(
+            todosCollectionRef,
+            where("userId", "==", auth.currentUser.uid)
+        );
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const todos = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            dispatch({ type: "SET_TASKS", payload: todos });
+            console.log("Realtime todos:", todos);
+        });
+
+        return () => unsubscribe();
+    }, []);
     return (
         <div>
-            <TaskContext.Provider value={{ tasks, dispatch }}>
+            <TaskContext.Provider value={{ tasks, dispatch, auth}}>
                 <Header />
                 <AddTaskForm />
                 <Board />

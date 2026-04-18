@@ -8,14 +8,12 @@ import { useNavigate } from 'react-router';
 const Header = () => {
     const navigate = useNavigate();
 
-
     useEffect(() => {
             const unsubscribe = onAuthStateChanged(auth, (user) => {
                 if (user === null) {
                     navigate(`/`);
                 }
             });
-    
             return () => unsubscribe();
         }, []);
     const handleLogout = async () => {

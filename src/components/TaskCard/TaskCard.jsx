@@ -4,7 +4,8 @@ import { STATUSES, STATUSES_MAP } from "../../utils/constants";
 import { Menu, X, Pencil } from "lucide-react";
 import { useState, useContext, useEffect } from "react";
 import { TaskContext } from "@/context/TaskContext";
-
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../config/firebase";
 const TaskCard = ({ id, title, description, status }) => {
     const { dispatch } = useContext(TaskContext);
 
@@ -33,25 +34,34 @@ const TaskCard = ({ id, title, description, status }) => {
         }),
     }));
 
-    const handleStatusChange = (newStatus) => {
-        dispatch({
-            type: "UPDATE_TASK",
-            payload: { id, newStatus },
-        });
+    const handleStatusChange = async (newStatus) => {
+        try {
+            const taskRef = doc(db, "todos", id);
+
+            await updateDoc(taskRef, {
+                status: newStatus,
+            });
+
+        } catch (err) {
+            console.error("Error updating status:", err);
+        }
     };
 
     // ✅ Update handler
-    const handleUpdate = () => {
-        dispatch({
-            type: "UPDATE_TASK",
-            payload: {
-                id,
+    const handleUpdate = async () => {
+        try {
+            const taskRef = doc(db, "todos", id);
+
+            await updateDoc(taskRef, {
                 title: editTitle,
                 description: editDescription,
+            });
 
-            },
-        });
-        setIsEditing(false);
+            setIsEditing(false);
+
+        } catch (err) {
+            console.error("Error updating task:", err);
+        }
     };
 
     return (

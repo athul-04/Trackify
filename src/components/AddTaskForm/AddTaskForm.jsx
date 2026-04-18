@@ -9,7 +9,9 @@ import {
     Heading,
 } from "@chakra-ui/react";
 import { TaskContext } from "../../context/TaskContext";
-
+import { auth } from "../../config/firebase";
+import { addDoc } from "firebase/firestore";
+import { todosCollectionRef } from "@/pages/Home";
 import { Plus } from 'lucide-react';
 
 const AddTaskForm = () => {
@@ -19,18 +21,18 @@ const AddTaskForm = () => {
 
     const { dispatch } = useContext(TaskContext);
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         if (!title.trim()) return;
 
-        dispatch({
-            type: "ADD_TASK",
-            payload: {
-                id: Date.now(),
-                title,
-                description,
-                status: "backlog",
-            },
-        });
+        const newTask = {
+            title,
+            description,
+            status: "backlog",
+            userId:auth?.currentUser?.uid,
+        };
+
+        await addDoc(todosCollectionRef, newTask);
+        console.log("Tasks added Successfully")
 
         setTitle("");
         setDescription("");
