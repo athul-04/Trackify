@@ -38,3 +38,19 @@
     height: 2rem;
     z-index: 23;
 }
+
+
+.logout {
+    position: fixed;
+    top: 1rem;
+    right: 5rem;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    width: 5rem;
+    height: 2rem;
+    z-index: 23;
+}

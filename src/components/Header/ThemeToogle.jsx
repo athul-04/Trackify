@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { LogOut } from 'lucide-react';
 import "./Header.css"
 const ThemeToggle = () => {
     const [dark, setDark] = useState(false);
@@ -21,9 +22,10 @@ const ThemeToggle = () => {
     };
 
     return (
+        <>
         <button className="theme-toggle" onClick={toggleTheme}>
             {dark ? "🌙" : "☀️"}
-        </button>
+        </button></>
     );
 };
 
