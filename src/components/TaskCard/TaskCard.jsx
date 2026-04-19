@@ -4,8 +4,12 @@ import { STATUSES, STATUSES_MAP } from "../../utils/constants";
 import { Menu, X, Pencil } from "lucide-react";
 import { useState, useContext, useEffect } from "react";
 import { TaskContext } from "@/context/TaskContext";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { Trash } from 'lucide-react';
+
+
+
 const TaskCard = ({ id, title, description, status }) => {
     const { dispatch } = useContext(TaskContext);
 
@@ -61,6 +65,15 @@ const TaskCard = ({ id, title, description, status }) => {
 
         } catch (err) {
             console.error("Error updating task:", err);
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            const taskRef = doc(db, "todos", id);
+            await deleteDoc(taskRef);
+        } catch (err) {
+            console.error("Error deleting task:", err);
         }
     };
 
@@ -199,6 +212,7 @@ const TaskCard = ({ id, title, description, status }) => {
                     >
                         {title}
                     </h3>
+                    {status === "done" && <Trash size={20} color="red" className="trash-icon" onClick={handleDelete} />}
                 </div>
             </div>
         </>
