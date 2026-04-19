@@ -43,7 +43,7 @@
 .logout {
     position: fixed;
     top: 1rem;
-    right: 5rem;
+    right: 6rem;
     background: none;
     border: none;
     color: var(--text-primary);
@@ -53,4 +53,14 @@
     width: 5rem;
     height: 2rem;
     z-index: 23;
+}
+
+
+@media screen and (max-width: 768px) {
+    
+    .logout {
+        top: 1.4rem;
+        left:0.7rem;
+        height:1.5rem;
+    }
 }

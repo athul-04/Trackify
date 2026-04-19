@@ -21,7 +21,6 @@ const Home = () => {
         let unsubscribeSnapshot = null;
 
         const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-            // cleanup previous listener if any
             if (unsubscribeSnapshot) {
                 unsubscribeSnapshot();
                 unsubscribeSnapshot = null;
@@ -44,7 +43,6 @@ const Home = () => {
                 });
 
             } else {
-                // user logged out
                 dispatch({ type: "SET_TASKS", payload: [] });
             }
         });
